@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV Viewer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        .error {
+            color: red;
+        }
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin: 20px auto;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        img {
+            max-width: 80%;
+            height: auto;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>CSV Viewer</h1>
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" name="file" accept=".csv" required>
+        <button type="submit">Upload CSV</button>
+    </form>
+
+    {% if error %}
+        <p class="error">{{ error }}</p>
+    {% endif %}
+
+    {% if filename %}
+        <h2>File Data: {{ filename }}</h2>
+    {% endif %}
+
+    {% if data %}
+        <table>
+            <tr>
+                {% for key in data[0].keys() %}
+                    <th>{{ key }}</th>
+                {% endfor %}
+            </tr>
+            {% for row in data %}
+                <tr>
+                    {% for value in row.values() %}
+                        <td>{{ value }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    {% endif %}
+
+    {% if plot_url %}
+        <h2>CSV Graph</h2>
+        <img src="data:image/png;base64,{{ plot_url }}" alt="CSV Graph">
+    {% endif %}
+</body>
+</html>
