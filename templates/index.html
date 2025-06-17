@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CSV Viewer</title>
+    <title>Visualizador de CSV</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -34,10 +34,10 @@
     </style>
 </head>
 <body>
-    <h1>CSV Viewer</h1>
+    <h1>Visualizador de CSV</h1>
     <form method="post" enctype="multipart/form-data">
         <input type="file" name="file" accept=".csv" required>
-        <button type="submit">Upload CSV</button>
+        <button type="submit">Carregar CSV</button>
     </form>
 
     {% if error %}
@@ -45,7 +45,7 @@
     {% endif %}
 
     {% if filename %}
-        <h2>File Data: {{ filename }}</h2>
+        <h2>Dados do arquivo: {{ filename }}</h2>
     {% endif %}
 
     {% if data %}
@@ -66,8 +66,8 @@
     {% endif %}
 
     {% if plot_url %}
-        <h2>CSV Graph</h2>
-        <img src="data:image/png;base64,{{ plot_url }}" alt="CSV Graph">
+        <h2>Gráfico do CSV</h2>
+        <img src="data:image/png;base64,{{ plot_url }}" alt="Gráfico do CSV">
     {% endif %}
 </body>
 </html>
